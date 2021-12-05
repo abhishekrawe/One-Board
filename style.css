@@ -10,7 +10,7 @@ body {
 .options-cont {
   height: 4rem;
   width: 4rem;
-  background-color: lightblue;
+  background-color: #56fcae;
   position: absolute;
   top: 2rem;
   left: 2rem;
@@ -19,4 +19,22 @@ body {
   align-items: center;
   border-radius: 50%;
   font-size: 1.5rem;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
+
+.tools-cont {
+    display: flex;
+    height: 5rem ;
+    width: 20 rem;
+    background-color: lightgreen;
+    justify-content: space-around;
+    position: absolute;
+    top: 2rem;
+    left: 20vw;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+.tools-cont > * {
+    display: block;
+    width: 3.5 rem;
+}
+ 
