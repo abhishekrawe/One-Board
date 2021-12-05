@@ -87,7 +87,7 @@ body {
 .eraser-tool-cont{
   height: 2rem;
   width: 7rem;
-  background-color: lightblue;
+  background-color: #56fcae;
   display: flex;
   justify-content: center;
   align-items: center;

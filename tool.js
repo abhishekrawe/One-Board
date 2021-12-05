@@ -6,19 +6,11 @@ let optionsFlag = true;
 optionsCont.addEventListener("click", (e) => {
     optionsFlag = !optionsFlag;
 
-    if(optionsFlag) {
-
-    }
-    else {
-
-
-
-    }
-    
-
+    if(optionsFlag) openTools();
+    else closeTools();
 })
 
-function opentTools() {
+function openTools() {
        let iconElem  = optionsCont.children[0];
        iconElem.classList.remove("fa-times");
        iconElem.classList.add("fa-bars");
