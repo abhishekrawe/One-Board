@@ -1,21 +1,22 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .options-cont {
-    height:3rem ;
-    width: 4rem;
-    background-color: lightblue ;
-    position: absolute;
-    top : 2rem;
-    left : 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   
+  height: 4rem;
+  width: 4rem;
+  background-color: lightblue;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 1.5rem;
 }
