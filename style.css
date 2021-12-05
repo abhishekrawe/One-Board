@@ -46,6 +46,7 @@ body {
   top: 7rem;
   left: 25vw;
   border-radius: 3px;
+  display: none;
 
 }
 .pencil-width-cont {
@@ -88,7 +89,7 @@ body {
   height: 2rem;
   width: 7rem;
   background-color: #56fcae;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -97,4 +98,8 @@ body {
 }
 .eraser-tool-cont input {
   width: 80%;
+}
+
+.scale-tools {
+
 }
