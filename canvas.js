@@ -3,9 +3,91 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 
+let pencilColorCont = document.querySelectorAll(".pencil-color");
+let pencilWidthElem = document.querySelector(".pencil-width");
+let eraserwidthElem = document.querySelector(".eraser-width");
+
+let penColor = "red";
+let eraserColor = "white";
+let penWidth = pencilWidthElem.value;
+let eraserWidth = eraserwidthElem.value;
+
+let mouseDown = false;
+
 //API
 let tool = canvas.getContext("2d");
-tool.beginPath(); //new graphics (path) (line)
-tool.moveTo(10,10) ; //start point
-tool.lineTo(100, 150); //end point
-tool.stroke();//fill graphics or color
+
+tool.strokeStyle = penColor;
+tool.lineWidth =  penWidth;
+
+
+// mouse down -> start new path , mousemove -> path fill (graphics)
+canvas.addEventListener("mousedown" , (e) => {
+  mouseDown = true;
+  beginPath({
+      x : e.clientX,
+      y : e.clientY
+  })
+})
+canvas.addEventListener("mousemove" , (e) => {
+   if (mouseDown) drawStroke({
+       x : e.clientX,
+       y : e.clientY
+   })
+})
+
+canvas.addEventListener("mouseup", (e) => {
+    mouseDown = false;
+})
+
+function beginPath(strokeObj) {
+    tool.beginPath();
+    tool.moveTo(strokeObj.x, strokeObj.y);
+}
+function drawStroke(strokeObj) {
+    tool.lineTo(strokeObj.x, strokeObj.y);
+    tool.stroke();
+
+}
+pencilColorCont.forEach((colorElem) => {
+    colorElem.addEventListener("click", (e) => {
+        let color = colorElem.classList[0];
+        penColor = color;
+        tool.strokeStyle = penColor;
+    })
+})
+
+pencilWidthElem.addEventListener("change", (e) => {
+    penWidth = pencilWidthElem.value;
+    tool.lineWidth= penWidth;
+})
+
+eraserwidthElem.addEventListener("change", (e) => {
+    eraserWidth= eraserwidthElem.value;
+    tool.lineWidth= penWidth;
+})
+ 
+
+
+
+
+
+
+// Basics Understanding How Canfas Works 
+
+//API
+// let tool = canvas.getContext("2d");
+
+// tool.strokeStyle = "blue";
+// tool.lineWidth =  "3";
+
+// tool.beginPath(); //new graphics (path) (line)
+// tool.moveTo(10,10) ; //start point
+// tool.lineTo(100, 150); //end point
+// tool.stroke();//fill graphics or color
+
+// tool.strokeStyle="red";
+// tool.beginPath();
+// tool.moveTo(10,10);
+// tool.lineTo(200, 200);
+// tool.stroke();
