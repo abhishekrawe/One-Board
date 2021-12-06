@@ -64,6 +64,9 @@ sticky.addEventListener("click", (e) => {
   `;
   document.body.appendChild(stickyCont);  
 
+  let minimize = stickyCont.querySelector(".minimize");
+  let remove = stickyCont.querySelector(".remove");
+  noteActions(minimize, remove , stickyCont);
 
   stickyCont.onmousedown = function(event) {
 
@@ -76,6 +79,19 @@ sticky.addEventListener("click", (e) => {
   };
   
 })
+function noteActions(minimize , remove, stickyCont) {
+   remove.addEventListener("click", (e) => {
+       stickyCont.remove();
+   })
+   minimize.addEventListener("click", (e) => {
+    let noteCont = stickyCont.querySelector(".note-cont");
+    let display= getComputedStyle(noteCont).getPropertyValue("display");
+    if(display=== "none") noteCont.style.display = "block";
+    else noteCont.style.display= "none";
+   })
+}
+
+
 function dragAndDrop(element ,event) {
   let shiftX = event.clientX - element.getBoundingClientRect().left;
   let shiftY = event.clientY - element.getBoundingClientRect().top;
