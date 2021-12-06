@@ -6,11 +6,18 @@ canvas.height = window.innerHeight;
 let pencilColorCont = document.querySelectorAll(".pencil-color");
 let pencilWidthElem = document.querySelector(".pencil-width");
 let eraserwidthElem = document.querySelector(".eraser-width");
+let download = document.querySelector(".download");
+let redo = document.querySelector(".redo");
+let undo = document.querySelector(".redo");
 
 let penColor = "red";
 let eraserColor = "white";
 let penWidth = pencilWidthElem.value;
 let eraserWidth = eraserwidthElem.value;
+
+let undoRedoTracker= []; //Data
+let track = 0 ; // Reperesent which action from tracker array
+
 
 let mouseDown = false;
 
@@ -32,19 +39,36 @@ canvas.addEventListener("mousedown" , (e) => {
 canvas.addEventListener("mousemove" , (e) => {
    if (mouseDown) drawStroke({
        x : e.clientX,
-       y : e.clientY
+       y : e.clientY ,
+       color :eraserFlag ? eraserColor : penColor,
+       width : eraserFlag ? eraserWidth : penWidth
    })
 })
 
 canvas.addEventListener("mouseup", (e) => {
     mouseDown = false;
+
+    let url = canvas.toDataURL();
+    undoRedoTracker.push(url);
+    track = undoRedoTracker.length- 1;
 })
+
+undo.addEventListener("click", (e) = {
+
+})
+
+redo.addEventListener("click", (e) = {
+    
+})
+
 
 function beginPath(strokeObj) {
     tool.beginPath();
     tool.moveTo(strokeObj.x, strokeObj.y);
 }
 function drawStroke(strokeObj) {
+    tool.strokeStyle= strokeObj.color;
+    tool.lineWidth= strokeObj.width;
     tool.lineTo(strokeObj.x, strokeObj.y);
     tool.stroke();
 
@@ -64,8 +88,29 @@ pencilWidthElem.addEventListener("change", (e) => {
 
 eraserwidthElem.addEventListener("change", (e) => {
     eraserWidth= eraserwidthElem.value;
-    tool.lineWidth= penWidth;
+    tool.lineWidth= eraserWidth;
 })
+eraser.addEventListener("click", (e) => {
+    if (eraserFlag) {
+       tool.strokeStyle = eraserColor;
+       tool.lineWidth = eraserWidth;
+    }else {
+        tool.strokeStyle = penColor;
+        tool.lineWidth = penWidth;
+    }
+})
+
+download.addEventListener("click", (e) => {
+    let url = canvas.toDataURL();
+    
+    let a = document.createElement("a");
+    a.href = url;
+    a.download = "board.png"
+    a.click();
+
+}
+
+)
  
 
 
