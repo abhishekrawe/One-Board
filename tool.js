@@ -6,6 +6,8 @@ let eraserToolCont = document.querySelector(".eraser-tool-cont");
 let pencil = document.querySelector(".pencil");
 let eraser = document.querySelector(".eraser");
 let sticky = document.querySelector(".sticky");
+let upload = document.querySelector(".upload");
+
 let pencilFlag = false;
 let eraserFlag = false;
 
@@ -48,23 +50,56 @@ eraser.addEventListener("click", (e) => {
   else eraserToolCont.style.display = "none";
 });
 
+//-------------- Upload Function -------------------------------//
+upload.addEventListener("click", (e) => {
+  //Open File Explorer after click
+  let input = document.createElement("input");
+  input.setAttribute("type", "file");
+  input.click();
+
+  input.addEventListener("change", (e) => {
+    let file = input.files[0];
+    let url = URL.createObjectURL(file);
+
+    let stickyTemplateHTML = `
+    <div class="header-cont">
+    <div class="minimize"></div>
+    <div class="remove"></div>
+    </div>
+    <div class="note-cont">
+    <img src="${url}"/>
+    </div>
+    
+    `;
+    //call function code of sticky element
+    createSticky(stickyTemplateHTML);
+  });
+});
+
+//---------------------Sticky Function ------------------------//
+
 sticky.addEventListener("click", (e) => {
-  let stickyCont = document.createElement("div");
-  stickyCont.setAttribute("class", "sticky-cont");
-  stickyCont.innerHTML = `
-  
+  let stickyTemplateHTML = `
   <div class="header-cont">
        <div class="minimize"></div>
        <div class="remove"></div>
    </div>
    <div class="note-cont">
-       <textarea></textarea>
+       <textarea spellcheck="false"></textarea>
     </div>
   
   `;
-  document.body.appendChild(stickyCont);
+  //call functions code of sticky 
+  createSticky(stickyTemplateHTML);
+});
 
-  // Sticky Note Fetures
+
+// ------- fucntions code for sticky elements -------------//
+function createSticky(stickyTemplateHTML) {
+  let stickyCont = document.createElement("div");
+  stickyCont.setAttribute("class", "sticky-cont");
+  stickyCont.innerHTML = stickyTemplateHTML;
+  document.body.appendChild(stickyCont);
   let minimize = stickyCont.querySelector(".minimize");
   let remove = stickyCont.querySelector(".remove");
   noteActions(minimize, remove, stickyCont);
@@ -76,7 +111,7 @@ sticky.addEventListener("click", (e) => {
   stickyCont.ondragstart = function () {
     return false;
   };
-});
+}
 
 // Sticky Note Feture Minimse and remve button integration
 function noteActions(minimize, remove, stickyCont) {
