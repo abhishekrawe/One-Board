@@ -56,7 +56,7 @@ undo.addEventListener("click", (e) => {
   //track action
   let trackObj = {
     trackValue: track,
-    undoRedoTracker,
+    undoRedoTracker
   };
   undoRedoCanvas(trackObj);
 });
@@ -67,7 +67,7 @@ redo.addEventListener("click", (e) => {
   let trackObj = {
     trackValue: track,
     undoRedoTracker
-  }
+  };
   undoRedoCanvas(trackObj);
 });
 
@@ -80,7 +80,7 @@ function undoRedoCanvas(trackObj) {
   img.src = url;
   img.onload = (e) => {
     tool.drawImage(img, 0, 0, canvas.width, canvas.height);
-  }
+  };
 }
 
 function beginPath(strokeObj) {
