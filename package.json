@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/abhishekrawe/OpenBoard/issues"
   },
-  "homepage": "https://github.com/abhishekrawe/OpenBoard#readme"
+  "homepage": "https://github.com/abhishekrawe/OpenBoard#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.4.0"
+  }
 }
