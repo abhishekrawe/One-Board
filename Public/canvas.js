@@ -137,6 +137,11 @@ download.addEventListener("click", (e) => {
   a.click();
 });
 
+
+socket.on("beginPath", (data)=> {
+  // data -> data from server 
+})
+
 // Basics Understanding How Canfas Works
 
 //API

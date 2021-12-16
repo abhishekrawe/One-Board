@@ -15,7 +15,12 @@ let io = socket(server);
 io.on("connection", (socket)=> {
     console.log("Made socket connection");
 
+
+    //Recived data
     socket.on("beginPath", (data) => {
-          
+        // Transfer  data to all connected computers
+        // data -> data from front end
+        
+        io.socket.emit("beginPath" ,  data);
     })
 })
