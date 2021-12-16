@@ -1,3 +1,5 @@
+const { Socket } = require("socket.io");
+
 let canvas = document.querySelector("canvas");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -28,10 +30,16 @@ tool.lineWidth = penWidth;
 // mouse down -> start new path , mousemove -> path fill (graphics)
 canvas.addEventListener("mousedown", (e) => {
   mouseDown = true;
-  beginPath({
+  // beginPath({
+  //   x: e.clientX,
+  //   y: e.clientY
+  // });
+  let data = {
     x: e.clientX,
-    y: e.clientY,
-  });
+    y: e.clientY
+  }
+
+  socket.emit("beginPath", data);
 });
 canvas.addEventListener("mousemove", (e) => {
   if (mouseDown)
@@ -47,8 +55,8 @@ canvas.addEventListener("mouseup", (e) => {
   mouseDown = false;
 
   let url = canvas.toDataURL();
-  undoRedoTracker.push(canvas.toDataURL());
-  track = undoRedoTracker.length-1;
+  undoRedoTracker.push(URL());
+  track = undoRedoTracker.length - 1;
 });
 
 undo.addEventListener("click", (e) => {
@@ -56,17 +64,17 @@ undo.addEventListener("click", (e) => {
   //track action
   let trackObj = {
     trackValue: track,
-    undoRedoTracker
+    undoRedoTracker,
   };
   undoRedoCanvas(trackObj);
 });
 
 redo.addEventListener("click", (e) => {
-  if (track < undoRedoTracker.length-1) track++;
+  if (track < undoRedoTracker.length - 1) track++;
   //track action
   let trackObj = {
     trackValue: track,
-    undoRedoTracker
+    undoRedoTracker,
   };
   undoRedoCanvas(trackObj);
 });
