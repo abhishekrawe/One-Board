@@ -31,5 +31,5 @@
 - Clear Board
 - Theme change (Black & White theme)
 
-![Demo-Gif](preview/demo-video.gif)
+![Demo-Gif](preview/openboard.png)
 
