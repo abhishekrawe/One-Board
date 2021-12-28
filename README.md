@@ -6,6 +6,9 @@
 ## DEMO
 
 - To draw a line, click the `whiteboard` and move the mouse cursor in the whiteboard.
+- To write a sticky notes click on the Sticky notes icon
+- To Upload A image in Canavs screen click on the upload section
+- For Downloading you can simple download via download icon.
 - To change line width and line color, `select choices` on upper side.
 
 
