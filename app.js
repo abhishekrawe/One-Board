@@ -23,4 +23,10 @@ io.on("connection", (socket)=> {
         
         io.socket.emit("beginPath" ,  data);
     })
+    socket.on("drawStroke",(data) => {
+        io.socket.emit("drawStroke", data);
+    })
+    socket.on("redoUndo", (data) => {
+        io.socket.emit("redoUndo", data);
+    })
 })
